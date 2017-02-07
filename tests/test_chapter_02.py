@@ -1,6 +1,7 @@
 from unittest import TestCase
 
 from chapter02.raisetopower import raise_to_power
+from chapter02.findfactors import find_factors
 
 
 class TestChapter(TestCase):
@@ -17,3 +18,17 @@ class TestChapter(TestCase):
                  (88, 9, 316478381828866048)]
         for a, b, result in tests:
             self.assertEqual(result, raise_to_power(a, b))
+
+    def test_find_factors(self):
+        tests = ((664882073046, [2, 3, 3, 37, 389, 1597, 1607]),
+                 (155157254555, [5, 2267, 13688333]),
+                 (152510971152, [2, 2, 2, 2, 3, 3177311899]),
+                 (130861948212, [2, 2, 3, 3, 3635054117]),
+                 (919390834183, [919390834183]),
+                 (354804858018, [2, 3, 3, 13, 35449, 42773]),
+                 (617815993053, [3, 7, 31, 949026103]),
+                 (691973791252, [2, 2, 197, 878139329]),
+                 (413628737112, [2, 2, 2, 3, 3, 3, 5059, 378523]),
+                 (226881403322, [2, 7, 16205814523]))
+        for number, factors in tests:
+            self.assertEqual(find_factors(number), factors)

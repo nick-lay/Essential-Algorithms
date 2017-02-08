@@ -13,7 +13,7 @@ def find_factors(number: int) -> List[int]:
         number //= 2
     factor = 3
     max_factor = math.sqrt(number)
-    while factor < max_factor:
+    while factor <= max_factor:
         while number % factor == 0:
             factors.append(factor)
             number //= factor

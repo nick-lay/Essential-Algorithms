@@ -2,6 +2,7 @@ from unittest import TestCase
 
 from chapter02.raisetopower import raise_to_power
 from chapter02.findfactors import find_factors
+from chapter02.findprimes import find_primes
 
 
 class TestChapter(TestCase):
@@ -32,3 +33,7 @@ class TestChapter(TestCase):
                  (226881403322, [2, 7, 16205814523]))
         for number, factors in tests:
             self.assertEqual(find_factors(number), factors)
+
+    def test_find_primes(self):
+        tests = [1, 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97]
+        self.assertEqual(find_primes(100), tests)

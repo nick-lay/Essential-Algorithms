@@ -2,7 +2,7 @@ from unittest import TestCase
 
 from chapter02.raisetopower import raise_to_power
 from chapter02.findfactors import find_factors
-from chapter02.findprimes import find_primes
+from chapter02.findprimes import find_primes, find_prime, is_prime, _raise_to_power_by_module
 
 
 class TestChapter(TestCase):
@@ -30,10 +30,36 @@ class TestChapter(TestCase):
                  (617815993053, [3, 7, 31, 949026103]),
                  (691973791252, [2, 2, 197, 878139329]),
                  (413628737112, [2, 2, 2, 3, 3, 3, 5059, 378523]),
-                 (226881403322, [2, 7, 16205814523]))
+                 (226881403322, [2, 7, 16205814523]),
+                 (9, [3, 3]),
+                 (49, [7, 7]))
         for number, factors in tests:
             self.assertEqual(find_factors(number), factors)
 
     def test_find_primes(self):
         tests = [1, 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97]
         self.assertEqual(find_primes(100), tests)
+
+    def test_is_prime_pass(self):
+        tests = [3, 23, 853, 3083, 14081, 848707, 3301391, 70922359, 660323933, 7689207079]
+        for number in tests:
+            self.assertTrue(is_prime(number))
+
+    def test_is_prime_fail(self):
+        tests = [9, 33, 629, 8786, 60162, 506117, 1081240, 10301550, 961657230, 5234003114]
+        for number in tests:
+            self.assertFalse(is_prime(number))
+
+    def test_raise_to_power_by_module(self):
+        tests = [((7, 29, 30), 7),
+                 ((50, 80, 81), 34),
+                 ((26, 92, 93), 25),
+                 ((41, 47, 48), 41),
+                 ((18, 90, 91), 64),
+                 ((9, 55, 56), 9),
+                 ((32, 38, 39), 10),
+                 ((15, 21, 22), 15),
+                 ((29, 38, 39), 22),
+                 ((2, 13, 14), 2)]
+        for param, result in tests:
+            self.assertEqual(_raise_to_power_by_module(*param), result)

@@ -1,8 +1,14 @@
+import math
 from unittest import TestCase
 
 from chapter02.raisetopower import raise_to_power
 from chapter02.findfactors import find_factors
 from chapter02.findprimes import find_primes, find_prime, is_prime, _raise_to_power_by_module
+from chapter02.numintegration import rectangle_rule
+
+
+def _some_function(x: float) -> float:
+    return 1 + x + math.sin(2*x)
 
 
 class TestChapter(TestCase):
@@ -63,3 +69,12 @@ class TestChapter(TestCase):
                  ((2, 13, 14), 2)]
         for param, result in tests:
             self.assertEqual(_raise_to_power_by_module(*param), result)
+
+    def test_rectangle_rule(self):
+        tests = [(_some_function, (0, 50, 100), 1287.6895973137248),
+                 (_some_function, (0, 50, 1000), 1298.831442328184),
+                 (_some_function, (0, 50, 10000), 1299.9451059043236),
+                 (_some_function, (0, 50, 20000), 1300.0069733775213),
+                 (_some_function, (0, 5, 100), 18.30736988476295)]
+        for func, param, result in tests:
+            self.assertEqual(rectangle_rule(func, *param), result)

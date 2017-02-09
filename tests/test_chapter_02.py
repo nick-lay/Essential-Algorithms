@@ -56,6 +56,11 @@ class TestChapter(TestCase):
         for number in tests:
             self.assertFalse(is_prime(number))
 
+    def test_find_prime(self):
+        for num_digits in range(1, 31):
+            prime = find_prime(num_digits)
+            self.assertTrue(is_prime(prime))
+
     def test_raise_to_power_by_module(self):
         tests = [((7, 29, 30), 7),
                  ((50, 80, 81), 34),

@@ -4,7 +4,7 @@ from unittest import TestCase
 from chapter02.raisetopower import raise_to_power
 from chapter02.findfactors import find_factors
 from chapter02.findprimes import find_primes, find_prime, is_prime, _raise_to_power_by_module
-from chapter02.numintegration import rectangle_rule, trapezoid_rule
+from chapter02.numintegration import rectangle_rule, trapezoid_rule, adoptive_midpoint
 
 
 def _some_function(x: float) -> float:
@@ -92,3 +92,10 @@ class TestChapter(TestCase):
                  (_some_function, (0, 5, 100), 18.41876935699072)]
         for func, param, result in tests:
             self.assertEqual(trapezoid_rule(func, *param), result)
+
+    def test_adoptive_midpoint(self):
+        tests = [(_some_function, (0, 5, 3, 0.001), 18.418526233499527),
+                 (_some_function, (0, 5, 5, 0.001), 18.41917031334151),
+                 (_some_function, (0, 5, 10, 0.001), 18.41917031334151)]
+        for func, param, result in tests:
+            self.assertEqual(adoptive_midpoint(func, *param), result)
